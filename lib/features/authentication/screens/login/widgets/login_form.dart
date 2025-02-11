@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_cart/features/authentication/screens/password_configration/forget_password.dart';
 import 'package:go_cart/features/authentication/screens/signup/signup.dart';
+import 'package:go_cart/navigation_menu.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/constants/text_strings.dart';
 import 'package:iconsax/iconsax.dart';
@@ -44,7 +46,7 @@ class LoginForm extends StatelessWidget {
                     Text(TTexts.rememberMe),
                   ],
                 ),
-                TextButton(onPressed: () {}, child: Text(TTexts.forgetPassword))
+                TextButton(onPressed: ()=>Get.to(()=> ForgetPassword()), child: Text(TTexts.forgetPassword))
               ],
             ),
             SizedBox(
@@ -53,7 +55,7 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child:
-                  ElevatedButton(onPressed: () {}, child: Text(TTexts.signIn)),
+                  ElevatedButton(onPressed: ()=>Get.to(()=>NavigationMenu()), child: Text(TTexts.signIn)),
             ),
             SizedBox(
               height: TSizes.spaceBtwItems,

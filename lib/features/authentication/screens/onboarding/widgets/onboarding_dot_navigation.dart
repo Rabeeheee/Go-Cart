@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_cart/features/authentication/controllers.onboarding/onboarding_controller.dart';
+import 'package:go_cart/features/authentication/controllers/onboarding_controller.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/device/device_utility.dart';
