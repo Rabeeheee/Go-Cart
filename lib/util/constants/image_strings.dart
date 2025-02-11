@@ -11,4 +11,12 @@ class TImages{
 
     static const String VerifyEmail = 'assets/images/animations/Animation - 1739202852816.json';
 
+        static const String sports = 'assets/icons/sports.png';
+        static const String mens = 'assets/icons/mens.png';
+        static const String ladies = 'assets/icons/ladies.webp';
+        static const String oldmen = 'assets/icons/old men.jpeg';
+        static const String kids = 'assets/icons/kids.jpg';
+        static const String unisex = 'assets/icons/unisex.webp';
+
+
 }
