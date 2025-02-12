@@ -8,7 +8,7 @@ class TCartCounterIcon extends StatelessWidget {
   const TCartCounterIcon({
     super.key,
     required this.onPressed,
-    this.iconColor = TColors.white,
+    this.iconColor,
   });
 
   final VoidCallback onPressed;

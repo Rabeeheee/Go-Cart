@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
                   TPromoSlider(banners: [TImages.banner1, TImages.banner2, TImages.banner3],),
                    SizedBox(height: TSizes.spaceBtwSetions,),
 
-                   TSectionHeading(title: 'Popular Products', ),
+                   TSectionHeading(title: 'Popular Products', onPressed: (){}, ),
                     SizedBox(height: TSizes.spaceBtwItems,),
                 
 

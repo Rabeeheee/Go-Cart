@@ -20,21 +20,21 @@ class TProductCardVertical extends StatelessWidget {
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: (){},
+      onTap: () {},
       child: Container(
         width: 180,
         padding: EdgeInsets.all(1),
         decoration: BoxDecoration(
           boxShadow: [TShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
-          color: dark ? TColors.darkGrey : TColors.white,
+          color: dark ? const Color.fromARGB(255, 35, 35, 35) : TColors.white,
         ),
         child: Column(
           children: [
             TRoundedContaner(
               height: 180,
               padding: EdgeInsets.all(TSizes.sm),
-              backgroundColor: dark ? TColors.dark : TColors.light,
+              backgroundColor: dark ? const Color.fromARGB(255, 52, 52, 52) : TColors.light,
               child: Stack(
                 children: [
                   TRoundedImage(
@@ -61,54 +61,62 @@ class TProductCardVertical extends StatelessWidget {
                     top: 0,
                     right: 0,
                     child: TCircularIcon(
-                      icon: Iconsax.heart5, color: Colors.red,
-                     ),
+                      icon: Iconsax.heart5,
+                      color: Colors.red,
+                    ),
                   )
                 ],
               ),
             ),
-            SizedBox(height: TSizes.spaceBtwItems/2,),
-      
-            Padding(padding: EdgeInsets.only(left: TSizes.sm),
+            SizedBox(
+              height: TSizes.spaceBtwItems / 2,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TProductTitleText(title: 'Nike Air Shoes 275',smallSize: true,),
-                        
-                  SizedBox(height: TSizes.spaceBtwItems/2,),
-                  Row(
-                    children: [
-                      Text('Nike', overflow: TextOverflow.ellipsis, maxLines: 1, style: Theme.of(context).textTheme.labelMedium,),
-                      SizedBox(width: TSizes.xs,),
-                      Icon(Iconsax.verify5, color: TColors.buttonPrimary, size: TSizes.iconXs,)
-                    ],
+                  TProductTitleText(
+                    title: 'Nike Air Shoes 275',
+                    smallSize: true,
                   ),
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                     TProductPriceText(price: '35.0'),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: TColors.dark,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(TSizes.cardRadiusMd),
-                            bottomRight: Radius.circular(TSizes.productImageRadius)
-                          )
-                        ),
-                        child: SizedBox(
-                          width: TSizes.iconLg * 1.2,
-                          height: TSizes.iconLg * 1.2,
-                          child: Center(child: Icon(Iconsax.add, color: TColors.white,))),
-                      )
-                    ],
-                   )
-          ], 
-        ),
+                  SizedBox(
+                    height: TSizes.spaceBtwItems / 2,
+                  ),
+                  TBrandTitleWithVerifiedIcon(),
+                ],
+              ),
             ),
-          ],),
+            Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: TSizes.sm),
+                  child: TProductPriceText(price: '35.0'),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: TColors.darkerGrey,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(TSizes.cardRadiusMd),
+                          bottomRight:
+                              Radius.circular(TSizes.productImageRadius))),
+                  child: SizedBox(
+                      width: TSizes.iconLg * 1.2,
+                      height: TSizes.iconLg * 1.2,
+                      child: Center(
+                          child: Icon(
+                        Iconsax.add,
+                        color: TColors.white,
+                      ))),
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
-
 
