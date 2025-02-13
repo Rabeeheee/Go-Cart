@@ -38,4 +38,7 @@ class TImages {
 
 
   static const String nikeLogo = 'assets/logos/Nike 1.png';
+
+    static const String user = 'assets/images/user/user.png';
+
 }

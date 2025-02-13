@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 
 class TRoundedImage extends StatelessWidget {

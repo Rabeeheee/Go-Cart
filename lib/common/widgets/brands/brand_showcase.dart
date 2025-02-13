@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_cart/common/widgets/brands/brand_card.dart';
 import 'package:go_cart/common/widgets/custom_shapes/container/rounded_contaner.dart';
 import 'package:go_cart/util/constants/colors.dart';
-import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/helpers/helper_functions.dart';
 

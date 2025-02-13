@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_cart/features/personalization/screen/settings/settings.dart';
 import 'package:go_cart/features/shop/screens/home/home.dart';
 import 'package:go_cart/features/shop/screens/store/store.dart';
+import 'package:go_cart/features/shop/screens/wishlist/wishlist.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/helpers/helper_functions.dart';
 import 'package:iconsax/iconsax.dart';
@@ -43,6 +45,6 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController{
   final Rx<int> selectedIndex = 0.obs; 
 
-  final screens = [HomeScreen(), StoreScreen(),Container(color: const Color.fromARGB(255, 175, 76, 129),),Container(color: const Color.fromARGB(255, 175, 160, 76),),];
+  final screens = [HomeScreen(), StoreScreen(),FavoriteScreen(),SettingsScreen()];
 
 }

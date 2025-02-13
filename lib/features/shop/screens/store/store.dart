@@ -3,15 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:go_cart/common/widgets/appbar/appbar.dart';
 import 'package:go_cart/common/widgets/appbar/tabbar.dart';
 import 'package:go_cart/common/widgets/brands/brand_card.dart';
-import 'package:go_cart/common/widgets/brands/brand_showcase.dart';
-import 'package:go_cart/common/widgets/custom_shapes/container/rounded_contaner.dart';
 import 'package:go_cart/common/widgets/custom_shapes/container/search_container.dart';
 import 'package:go_cart/common/widgets/layouts/grid_layout.dart';
 import 'package:go_cart/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:go_cart/common/widgets/texts/section_heading.dart';
 import 'package:go_cart/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:go_cart/util/constants/colors.dart';
-import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/helpers/helper_functions.dart';
 

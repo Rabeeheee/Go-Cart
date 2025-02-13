@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_cart/util/constants/colors.dart';
-import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/helpers/helper_functions.dart';
 
