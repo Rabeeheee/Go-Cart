@@ -25,7 +25,14 @@ class TBrandTitleText extends StatelessWidget {
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
 
-      style: Theme.of(context).textTheme.labelMedium,
+      style: brandTextSize == TextSize.small
+          ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
+          : brandTextSize == TextSize.medium
+              ? Theme.of(context).textTheme.bodyLarge!.apply(color: color)
+              : brandTextSize == TextSize.large
+                  ? Theme.of(context).textTheme.titleLarge!.apply(color: color)
+                  : Theme.of(context).textTheme.bodyMedium!.apply(color: color),
+              
     );
   }
 }

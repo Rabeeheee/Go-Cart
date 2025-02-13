@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_cart/common/widgets/texts/brand_title_text.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/enums.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -24,8 +25,17 @@ class TBrandTitleWithVerifiedIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        TBrandTitleText(),
+        Flexible(
+          child: TBrandTitleText(
+            title: 'Nike',
+            color: textColor,
+            maxLines: maxLines,
+            textAlign: textAlign,
+            brandTextSize: brandTextSize,
+            ),
+        ),
         SizedBox(
           width: TSizes.xs,
         ),

@@ -6,6 +6,7 @@ import 'package:go_cart/common/widgets/icons/t_circular_icon.dart';
 import 'package:go_cart/common/widgets/images/t_roundd_image.dart';
 import 'package:go_cart/common/widgets/texts/product_price_text.dart';
 import 'package:go_cart/common/widgets/texts/product_title_text.dart';
+import 'package:go_cart/common/widgets/texts/t_brand_title_with_verified_icon.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -83,7 +84,7 @@ class TProductCardVertical extends StatelessWidget {
                   SizedBox(
                     height: TSizes.spaceBtwItems / 2,
                   ),
-                  TBrandTitleWithVerifiedIcon(),
+                  TBrandTitleWithVerifiedIcon(title: 'Nike',),
                 ],
               ),
             ),
