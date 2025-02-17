@@ -9,6 +9,7 @@ import 'package:go_cart/common/widgets/texts/section_heading.dart';
 import 'package:go_cart/features/personalization/screen/profile/profile.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
+import 'package:go_cart/util/helpers/helper_functions.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -16,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

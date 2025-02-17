@@ -22,7 +22,7 @@ class StoreScreen extends StatelessWidget {
       child: Scaffold(
         appBar: TAppBar(
           title: Text('Store'),
-          actions: [TCartCounterIcon(onPressed: () {})],
+          actions: [TCartCounterIcon( onPressed: () {})],
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "801446275033",
+    "project_id": "go-cart-d3ceb",
+    "storage_bucket": "go-cart-d3ceb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:801446275033:android:c927d5cfe9676db9789bc8",
+        "android_client_info": {
+          "package_name": "com.example.go_cart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwA1s1W_KCIeakt_YvQBKiA0556ZvOM3w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
