@@ -26,7 +26,7 @@ class SignupScreen extends StatelessWidget {
               SizedBox(
                 height: TSizes.spaceBtwSetions,
               ),
-              SignUpForm(),
+              TSignUpForm(),
               SizedBox(
                 height: TSizes.spaceBtwSetions,
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_cart/features/authentication/controllers/onboarding_controller.dart';
+import 'package:go_cart/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:go_cart/features/authentication/screens/onboarding/widgets/onboarding_dot_navigation.dart';
 import 'package:go_cart/features/authentication/screens/onboarding/widgets/onboarding_next.dart';
 import 'package:go_cart/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
