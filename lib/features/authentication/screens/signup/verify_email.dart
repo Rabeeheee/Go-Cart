@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_cart/common/widgets/success_screen/success_screen.dart';
+import 'package:go_cart/data/repositories/authentication/authentication_repository.dart';
 import 'package:go_cart/features/authentication/controllers/signup/verify_email_controller.dart';
-import 'package:go_cart/features/authentication/screens/login/login.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/constants/text_strings.dart';
@@ -24,7 +23,7 @@ class VerifyEmailScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () => Get.offAll(() => LoginScreen()),
+            onPressed: () => AuthenticationRepository.instance.logout(),
             icon: Icon(CupertinoIcons.clear),
           ),
         ],
@@ -71,12 +70,7 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(() => SuccessScreen(
-                      onPressed: ()=>Get.to(()=>LoginScreen()),
-                      image: TImages.VerifyEmail,
-                      title: TTexts.coformationEmail,
-                      subtitle: TTexts.coformationEmailSubTitle,
-                      )),
+                    onPressed: () => controller.checkEmailVerificationStatus(),
                     child: Text('Continue')),
               ),
               SizedBox(
@@ -85,7 +79,7 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child:
-                    TextButton(onPressed: () {}, child: Text('resend Email')),
+                    TextButton(onPressed: () => controller.sendEmailVerification(), child: Text('resend Email')),
               ),
             ],
           ),
