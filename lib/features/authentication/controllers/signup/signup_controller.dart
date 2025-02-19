@@ -25,12 +25,12 @@ class SignupController extends GetxController {
  void signup() async {
   try {
     TFullScreenLoader.openLoadingDialog(
-        'We are processing your information...', TImages.VerifyEmail);
+        'We are processing your information...', TImages.loading);
 
     final isConnected = await NetworkManager.instance.isConnected();
     if (!isConnected) {
       TFullScreenLoader.stopLoading();
-      return; // Ensure function exits
+      return; 
     }
 
     if (!signupFormKey.currentState!.validate()) {
@@ -39,13 +39,13 @@ class SignupController extends GetxController {
     }
 
     if (!privacyPolicy.value) {
-      TFullScreenLoader.stopLoading(); // Make sure to stop the loader
+      TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(
         title: 'Accept Privacy Policy',
         message:
             'In order to create an account, you must accept the Privacy Policy & Terms of Use.',
       );
-      return; // Stop execution
+      return; 
     }
 
     final userCredential = await AuthenticationRepository.instance
@@ -71,9 +71,9 @@ class SignupController extends GetxController {
       message: 'Your account has been created! Verify your email to continue.',
     );
 
-    Get.to(() => VerifyEmailScreen());
+    Get.to(() => VerifyEmailScreen(email: email.text.trim(),));
   } catch (e) {
-    TFullScreenLoader.stopLoading(); // Ensure loader stops even if there's an error
+    TFullScreenLoader.stopLoading(); 
     TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
   }
 }

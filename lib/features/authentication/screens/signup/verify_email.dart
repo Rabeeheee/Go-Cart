@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_cart/common/widgets/success_screen/success_screen.dart';
+import 'package:go_cart/features/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:go_cart/features/authentication/screens/login/login.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -10,10 +11,14 @@ import 'package:go_cart/util/helpers/helper_functions.dart';
 import 'package:lottie/lottie.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key, this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -48,7 +53,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
               Text(
-                'rabeehm845@gmail.com',
+                email ?? '',
                 style: Theme.of(context).textTheme.labelLarge,
                 textAlign: TextAlign.center,
               ),

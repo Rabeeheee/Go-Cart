@@ -13,6 +13,10 @@ class TImages {
 
   static const String VerifyEmail =
       'assets/images/animations/Animation - 1739202852816.json';
+  static const String loading =
+      'assets/images/animations/Animation - 1739942171943.json';
+  static const String success =
+      'assets/images/animations/Animation - 1739942507857.json';
 
   static const String sports = 'assets/icons/sports.png';
   static const String mens = 'assets/icons/mens.png';
