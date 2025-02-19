@@ -6,6 +6,7 @@ import 'package:go_cart/common/widgets/custom_shapes/container/primary_header_co
 import 'package:go_cart/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:go_cart/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:go_cart/common/widgets/texts/section_heading.dart';
+import 'package:go_cart/data/repositories/authentication/authentication_repository.dart';
 import 'package:go_cart/features/personalization/screen/profile/profile.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -70,7 +71,9 @@ class SettingsScreen extends StatelessWidget {
                 SizedBox(height: TSizes.spaceBtwSetions,),
                 SizedBox(
                   width: double.infinity,
-                  child: OutlinedButton(onPressed: (){}, child: Text('Logout')),
+                  child: OutlinedButton(onPressed: ()async{
+                    await AuthenticationRepository.instance.logout();
+                  }, child: Text('Logout')),
                 ),
                 SizedBox(height: TSizes.spaceBtwSetions * 2.5,),
               ],

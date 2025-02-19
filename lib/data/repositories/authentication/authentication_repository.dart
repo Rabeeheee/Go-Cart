@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -26,6 +28,7 @@ class AuthenticationRepository extends GetxController {
 
   screenRedirect() async {
     final user = _auth.currentUser;
+    
     if (user != null) {
       if (user.emailVerified) {
         Get.offAll(() => NavigationMenu());
@@ -39,6 +42,24 @@ class AuthenticationRepository extends GetxController {
       deviceStorage.read('isFirstTime') != true
           ? Get.offAll(() => LoginScreen())
           : Get.offAll(() => OnBoardingScreen());
+    }
+  }
+
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again.';
     }
   }
 
@@ -78,6 +99,7 @@ class AuthenticationRepository extends GetxController {
 
   Future<void> logout() async {
     try {
+       log("Logging out...");
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => LoginScreen());
     } on FirebaseAuthException catch (e) {
@@ -89,6 +111,7 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformException(e.code).message;
     } catch (e) {
+      log("Logout Error: $e"); 
       throw 'Something went wrong. Please try again.';
     }
   }
