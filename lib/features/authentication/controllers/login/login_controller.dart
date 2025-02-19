@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_cart/data/repositories/authentication/authentication_repository.dart';
+import 'package:go_cart/features/personalization/controllers/user_controller.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/helpers/network_manager.dart';
 import 'package:go_cart/util/popups/full_screen_loader.dart';
@@ -16,6 +17,7 @@ final localStorage = GetStorage();
 final email = TextEditingController();
 final password = TextEditingController();
 GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+final userController = Get.put(UserController());
 
 
 
@@ -54,6 +56,31 @@ Future<void> emailAndPasswordSignIn() async {
 
     AuthenticationRepository.instance.screenRedirect();
   }catch (e) {
+    TFullScreenLoader.stopLoading();
+    TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+  }
+}
+
+
+Future<void> googleSignIn() async {
+  try{
+    TFullScreenLoader.openLoadingDialog('Logging you in....', TImages.loading);
+
+    final isConnected =  await NetworkManager.instance.isConnected();
+    if(!isConnected){
+      TFullScreenLoader.stopLoading();
+      return;
+    }
+
+    final userCredential = await AuthenticationRepository.instance.signInWithGoogle();
+
+      await userController.saveUserRecord(userCredential);
+
+      TFullScreenLoader.stopLoading();
+
+      AuthenticationRepository.instance.screenRedirect();
+
+  }catch (e){
     TFullScreenLoader.stopLoading();
     TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
   }

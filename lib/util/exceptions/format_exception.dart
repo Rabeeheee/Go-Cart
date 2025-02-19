@@ -1,5 +1,12 @@
-class TFormatException implements Exception{
-  const TFormatException();
+class TFormatException implements Exception {
+  final String? details; 
 
-  String get message => 'invalid data format';
+  const TFormatException([this.details]);
+
+  String get message {
+    if (details != null) {
+      return 'Invalid data format: $details';
+    }
+    return 'Invalid data format.';
+  }
 }
