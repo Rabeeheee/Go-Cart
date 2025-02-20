@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:go_cart/common/widgets/appbar/appbar.dart';
 import 'package:go_cart/common/widgets/images/t_circular_image.dart';
 import 'package:go_cart/common/widgets/texts/section_heading.dart';
+import 'package:go_cart/features/personalization/controllers/user_controller.dart';
+import 'package:go_cart/features/personalization/screen/profile/widgets/change_name.dart';
 import 'package:go_cart/features/personalization/screen/profile/widgets/profile_menu.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -14,10 +18,12 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: TAppBar(
         title: Text('Profile'),
         showBackArrow: true,
+        
       ),
       body: SingleChildScrollView(
         child: Padding(padding: EdgeInsets.all(TSizes.defaultSpace),
@@ -40,22 +46,22 @@ class ProfileScreen extends StatelessWidget {
             TSectionHeading(title: 'Profile Information',showActionButton: false,),
             SizedBox(height: TSizes.spaceBtwItems,),
 
-            TProfileMenu( title: 'Name', value: 'Rabeeh', onPressed: () {  },),
-            TProfileMenu( title: 'Username', value: 'rabeeheee', onPressed: () {  },),
+             Obx(() => TProfileMenu(title: 'Name', value: controller.user.value.fullName,onPressed: () => Get.off(() => ChangeName()),)),
+            TProfileMenu( title: 'Username', value: controller.user.value.username, onPressed: () {  },),
 
             SizedBox(height: TSizes.spaceBtwItems,),
             Divider(),
             SizedBox(height: TSizes.spaceBtwItems,),
 
-            TProfileMenu( title: 'User ID', value: '68787',icon: Iconsax.copy, onPressed: () {  },),
-            TProfileMenu( title: 'E-mail', value: 'rabeeh78@gmail.com', onPressed: () {  },),
-            TProfileMenu( title: 'Phone Number', value: '878576576', onPressed: () {  },),
+            TProfileMenu( title: 'User ID', value: controller.user.value.id,icon: Iconsax.copy, onPressed: () {  },),
+            TProfileMenu( title: 'E-mail', value: controller.user.value.email, onPressed: () {  },),
+            TProfileMenu( title: 'Phone Number', value: controller.user.value.phoneNumber, onPressed: () {  },),
             TProfileMenu( title: 'Gender', value: 'Male', onPressed: () {  },),
             TProfileMenu( title: 'Date of Birth', value: '23 Nov 1998', onPressed: () {  },),
             Divider(),
             SizedBox(height: TSizes.spaceBtwItems,),
 
-            Center(child: TextButton(onPressed: (){}, child: Text('Close Account', style: TextStyle(color: Colors.red),)))
+            Center(child: TextButton(onPressed: ()=> controller.deleteAccountWarningPopup(), child: Text('Close Account', style: TextStyle(color: Colors.red),)))
           ],
         ),
         ),
