@@ -42,7 +42,7 @@ class TImages {
   static const String product10 = 'assets/images/products/shoe10.png';
   static const String product11 = 'assets/images/products/shoe11.jpg';
   static const String product12 = 'assets/images/products/shoe12.jpg';
-  static const String product13 = 'assets/images/products/shoe13.jpg';
+  static const String product13 = 'assets/images/products/shoe13.png';
 
 
   static const String nikeLogo = 'assets/logos/Nike 1.png';
