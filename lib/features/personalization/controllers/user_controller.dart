@@ -12,11 +12,13 @@ import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/helpers/network_manager.dart';
 import 'package:go_cart/util/popups/full_screen_loader.dart';
 import 'package:go_cart/util/popups/loaders.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final profileLoading = false.obs;
+  final imageUploading = false.obs;
   Rx<UserModel> user = UserModel.empty().obs;
   final hidePassword = false.obs;
   final verifyEmail = TextEditingController();
@@ -44,29 +46,34 @@ class UserController extends GetxController {
 
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      await fetchUserRecord();
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          final nameParts =
+              UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          username: username,
-          email: userCredentials.user!.email ?? '',
-          firstName: nameParts[0],
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-          profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+          final user = UserModel(
+            id: userCredentials.user!.uid,
+            username: username,
+            email: userCredentials.user!.email ?? '',
+            firstName: nameParts[0],
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+          );
 
-        await userRepository.saveUserRecord(user);
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       TLoaders.warningSnackBar(
-          title: 'Data not saved',
-          message:
-              'Something went wrong while saving your information. you can re-save your date in your profile.');
+        title: 'Data not saved',
+        message:
+            'Something went wrong while saving your information. you can re-save your date in your profile.',
+      );
     }
   }
 
@@ -83,6 +90,27 @@ class UserController extends GetxController {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
           child: Text('Delete'),
+        ),
+      ),
+      cancel: OutlinedButton(
+        onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+        child: Text('Cancel'),
+      ),
+    );
+  }
+
+  void logoutAccountWarningPopup() {
+    Get.defaultDialog(
+      contentPadding: EdgeInsets.all(TSizes.md),
+      title: 'Logout',
+      middleText: 'Are you want to Logout your account? .',
+      confirm: ElevatedButton(
+        onPressed: () async => AuthenticationRepository.instance.logout(),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red, side: BorderSide(color: Colors.red)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          child: Text('Logout'),
         ),
       ),
       cancel: OutlinedButton(
@@ -117,27 +145,52 @@ class UserController extends GetxController {
   }
 
   Future<void> reAuthenticateEmailAndPasswordUser() async {
-    try{
+    try {
       TFullScreenLoader.openLoadingDialog('Processing', TImages.loading);
 
       final isConnected = await NetworkManager.instance.isConnected();
-      if(!isConnected){
+      if (!isConnected) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      if(!reAuthFormKey.currentState!.validate()){
+      if (!reAuthFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      await AuthenticationRepository.instance.reAuthenticateWithEmailAndPassword(verifyEmail.text.trim(), verifyPassword.text.trim());
+      await AuthenticationRepository.instance
+          .reAuthenticateWithEmailAndPassword(
+              verifyEmail.text.trim(), verifyPassword.text.trim());
       await AuthenticationRepository.instance.deleteAccount();
       TFullScreenLoader.stopLoading();
-      Get.offAll(()=> LoginScreen());
-    }catch (e) {
+      Get.offAll(() => LoginScreen());
+    } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
-}
+
+  uploadUserProfilePicture() async {
+    try{
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70, maxHeight: 512);
+    if (image != null) {
+      imageUploading.value = true;
+      final imageUrl =
+          await userRepository.uploadImage('Users/Images/Profile/', image);
+      Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+      await userRepository.updateSingleField(json);
+
+      user.value.profilePicture = imageUrl;
+      user.refresh();
+      
+      TLoaders.successSnackBar(title: 'Congratulations', message: 'Your Profile Image has been updated');
+    }
+    }catch (e) {
+      TLoaders.errorSnackBar(title: 'OhSnap', message: 'Something went wrong: $e');
+    }finally{
+      imageUploading.value = false;
+    }
+    
+  }
+} 

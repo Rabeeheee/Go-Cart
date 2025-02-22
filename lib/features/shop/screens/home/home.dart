@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     height: TSizes.spaceBtwSetions,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                    padding: EdgeInsets.only(left: TSizes.defaultSpace,right: TSizes.defaultSpace),
                     child: Column(
                       children: [
                         TSectionHeading(
@@ -46,13 +46,12 @@ class HomeScreen extends StatelessWidget {
                           height: TSizes.spaceBtwItems,
                         ),
                         THomeCategories(),
-                        
                       ],
                     ),
                   ),
                   SizedBox(
-                          height: TSizes.spaceBtwSetions,
-                        ),
+                    height: TSizes.spaceBtwSetions,
+                  ),
                 ],
               ),
             ),
@@ -60,20 +59,29 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  
-                  TPromoSlider(banners: [TImages.banner1, TImages.banner2, TImages.banner3],),
-                   SizedBox(height: TSizes.spaceBtwSetions,),
-
-                   TSectionHeading(title: 'Popular Products', onPressed: (){}, ),
-                    SizedBox(height: TSizes.spaceBtwItems,),
-                
-
-                TGridLayout(itemCount: 4, itemBuilder: (_ , int ) => TProductCardVertical(),),
-                  
+                  TPromoSlider(
+                    banners: [
+                      TImages.banner1,
+                      TImages.banner2,
+                      TImages.banner3
+                    ],
+                  ),
+                  SizedBox(
+                    height: TSizes.spaceBtwSetions,
+                  ),
+                  TSectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                  TGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (_, int) => TProductCardVertical(),
+                  ),
                 ],
               ),
-
-
             ),
           ],
         ),
@@ -81,4 +89,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

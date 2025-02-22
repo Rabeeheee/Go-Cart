@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:go_cart/data/repositories/user/user_repository.dart';
 import 'package:go_cart/features/personalization/controllers/user_controller.dart';
+import 'package:go_cart/features/personalization/models/user_model.dart';
 import 'package:go_cart/features/personalization/screen/profile/profile.dart';
 import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/helpers/network_manager.dart';
@@ -12,6 +13,8 @@ class UpdateNameController extends GetxController{
   static UpdateNameController get instance => Get.find();
 
   final firstName = TextEditingController();
+    Rx<UserModel> user = UserModel.empty().obs;
+
   final lastName = TextEditingController();
   final userController = UserController.instance;
   final userRepository = Get.put(UserRepository());
@@ -49,6 +52,7 @@ class UpdateNameController extends GetxController{
       userController.user.value.lastName = lastName.text.trim();
 
       TFullScreenLoader.stopLoading();
+     
 
       TLoaders.successSnackBar(title: 'Congratulations', message: 'your Name has been updated.');
 
