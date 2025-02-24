@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:go_cart/common/widgets/image_text_widget/vertical_image_text.dart';
 import 'package:go_cart/common/widgets/shimmers/category_shimmer.dart';
 import 'package:go_cart/features/shop/controller/category_controller.dart';
+import 'package:go_cart/features/shop/screens/sub_categories/sub_categories.dart';
  
 class THomeCategories extends StatelessWidget {
   const THomeCategories({
@@ -30,7 +31,7 @@ class THomeCategories extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) {
             final category = categoryController.featuredCategories[index];
-            return TVerticalImageText(image: category.image, title: category.name,onTap: (){}, );
+            return TVerticalImageText(image: category.image, title: category.name,onTap: () => Get.to(()=> SubCategoriesScreen()), );
           },
         ),
       );

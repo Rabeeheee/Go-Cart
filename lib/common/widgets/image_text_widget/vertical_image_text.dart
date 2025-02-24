@@ -45,7 +45,7 @@ class TVerticalImageText extends StatelessWidget {
               height: TSizes.spaceBtwItems / 2,
             ),
             SizedBox(
-              width: 55,
+              width: 45,
               child: Text(
                 title,
                 style: Theme.of(context)

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,8 @@ class CategoryRepository extends GetxController{
     try{
       final snapshot = await _db.collection('categories').get();
       final list = snapshot.docs.map((document) => CategoryModel.fromSnapshot(document)).toList();
+      log("Fetched Categories: ${list.length}");
+
       return list; 
     }on FirebaseException catch (e){
       throw TFirebaseException(e.code).message;
@@ -24,4 +28,27 @@ class CategoryRepository extends GetxController{
       throw 'Something went wrong. Please try again';
     }
   }
+
+
+  // Future<void> uploadDummyData(List<CategoryModel> categories) async {
+  //   try{
+  //     final storage = Get.put(TFirebaseStorageServices());
+
+  //     for(var category in categories){
+  //       final file = await storage.getImageDataFromAssets(category.image);
+
+  //       final url = await storage.uploadImageData('categories', file , category.name);
+
+  //       category.image = url;
+
+  //       await _db.collection("categories").doc(category.id).set(category.toJson());
+  //     }
+  //   }on FirebaseException catch (e) {
+  //     throw TFirebaseException(e.code).message;
+  //   }on PlatformException catch (e) {
+  //     throw TPlatformException(e.code).message;
+  //   } catch (e) {
+  //     throw 'Something went wrong. Please try again';
+  //   }
+  // }
 }

@@ -7,6 +7,7 @@ import 'package:go_cart/common/widgets/custom_shapes/container/search_container.
 import 'package:go_cart/common/widgets/layouts/grid_layout.dart';
 import 'package:go_cart/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:go_cart/common/widgets/texts/section_heading.dart';
+import 'package:go_cart/features/shop/controller/category_controller.dart';
 import 'package:go_cart/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
@@ -17,8 +18,9 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.intance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: TAppBar(
           title: Text('Store'),
@@ -68,33 +70,15 @@ class StoreScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                bottom: TTabbar(tabs: [
-                  Tab(
-                    child: Text('Sports'),
-                  ),
-                  Tab(
-                    child: Text('kids'),
-                  ),
-                  Tab(
-                    child: Text('ladies'),
-                  ),
-                  Tab(
-                    child: Text('Mens'),
-                  ),
-                  Tab(
-                    child: Text('Unisex'),
-                  ),
-                ]),
+                bottom: TTabbar(
+                  tabs:categories.map((category)=> Tab(child: Text(category.name),)).toList()
+                ),
               ),
             ];
           },
-          body: TabBarView(children: [
-            TCategoryTab(),
-            TCategoryTab(),
-            TCategoryTab(),
-            TCategoryTab(),
-            TCategoryTab(),
-          ]),
+          body: TabBarView(
+            children: categories.map((category)=> TCategoryTab(category: category,)).toList()
+            ),
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:go_cart/data/repositories/categories/category_repository.dart';
 import 'package:go_cart/features/shop/models/category_model.dart';
@@ -14,7 +16,7 @@ class CategoryController extends GetxController{
    @override
   void onInit() {
     super.onInit();
-    
+    fetchCategories();
   }
 
   Future<void> fetchCategories() async {
@@ -25,11 +27,19 @@ class CategoryController extends GetxController{
 
       allCategories.assignAll(categories);
 
-      featuredCategories.assignAll(allCategories.where((category)=> category.isFeatured && category.parentId.isEmpty).take(8).toList());
+featuredCategories.assignAll(
+  allCategories.where((category) => category.isFeatured).take(8).toList()
+);
+
+    featuredCategories.refresh();
+
+     
+
+
     }catch (e) {
       TLoaders.errorSnackBar(title: 'OhSnap!',message: e.toString());
     }finally {
-       
+       isLoading.value = false;
     }
   }
 }
