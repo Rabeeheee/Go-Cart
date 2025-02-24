@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:go_cart/common/widgets/effects/shimmer_effect.dart';
+import 'package:go_cart/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:go_cart/util/constants/colors.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 import 'package:go_cart/util/helpers/helper_functions.dart';

@@ -14,55 +14,61 @@ class TProductImageSlider extends StatelessWidget {
     super.key,
   });
 
-
   @override
   Widget build(BuildContext context) {
-        final dark = THelperFunctions.isDarkMode(context);
+    final dark = THelperFunctions.isDarkMode(context);
 
     return TCurvedEdgeWidget(
       child: Container(
         color: dark ? TColors.darkerGrey : TColors.light,
         child: Stack(
           children: [
-    
             SizedBox(
               height: 400,
               child: Padding(
-                padding: const EdgeInsets.all(TSizes.productImageRadius *2),
-                child: Center(child: Image(image: AssetImage(TImages.product10))),
+                padding: const EdgeInsets.fromLTRB(
+                  TSizes.productImageRadius * 2,
+                  TSizes.productImageRadius * 2,
+                  TSizes.productImageRadius * 2,
+                  TSizes.productImageRadius * 7,
+                ),
+                child: Center(
+                  child: Image(image: AssetImage(TImages.product13)),
+                ),
               ),
             ),
-    
             Positioned(
-              right: TSizes.defaultSpace /2,
+              right: TSizes.defaultSpace / 2,
               bottom: 30,
-              left: TSizes.defaultSpace /2,
-              
+              left: TSizes.defaultSpace / 2,
               child: SizedBox(
                 height: 80,
                 child: ListView.separated(
-                  separatorBuilder: (_,__) => SizedBox(width: TSizes.spaceBtwItems,),
+                  separatorBuilder: (_, __) => SizedBox(
+                    width: TSizes.spaceBtwItems,
+                  ),
                   itemCount: 6,
                   scrollDirection: Axis.horizontal,
                   physics: AlwaysScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (_, index)=> TRoundedImage(
-                    width: 80,
-                    backgroundColor: dark ? TColors.dark : TColors.white,
-                    border: Border.all(color: TColors.primaryColor),
-                    padding: EdgeInsets.all(TSizes.sm),
-                    imageUrl: TImages.product13),
+                  itemBuilder: (_, index) => TRoundedImage(
+                      width: 80,
+                      backgroundColor: dark ? TColors.dark : TColors.white,
+                      border: Border.all(color: TColors.primaryColor),
+                      padding: EdgeInsets.all(TSizes.sm),
+                      imageUrl: TImages.product13),
                 ),
               ),
             ),
-    
             TAppBar(
               showBackArrow: true,
               actions: [
-                TCircularIcon(icon: Iconsax.heart5,color: Colors.red,),
+                TCircularIcon(
+                  icon: Iconsax.heart5,
+                  color: Colors.red,
+                ),
               ],
             )
-              
           ],
         ),
       ),

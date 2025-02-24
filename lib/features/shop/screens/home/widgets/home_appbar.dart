@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:go_cart/common/widgets/appbar/appbar.dart';
-import 'package:go_cart/common/widgets/effects/shimmer_effect.dart';
+import 'package:go_cart/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:go_cart/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:go_cart/features/personalization/controllers/user_controller.dart';
 import 'package:go_cart/util/constants/colors.dart';

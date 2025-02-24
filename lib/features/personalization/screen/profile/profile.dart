@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:go_cart/common/widgets/appbar/appbar.dart';
-import 'package:go_cart/common/widgets/effects/shimmer_effect.dart';
+import 'package:go_cart/common/widgets/shimmers/shimmer_effect.dart';
 import 'package:go_cart/common/widgets/images/t_circular_image.dart';
 import 'package:go_cart/common/widgets/texts/section_heading.dart';
 import 'package:go_cart/features/personalization/controllers/user_controller.dart';
