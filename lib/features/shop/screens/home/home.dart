@@ -8,7 +8,6 @@ import 'package:go_cart/common/widgets/texts/section_heading.dart';
 import 'package:go_cart/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:go_cart/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:go_cart/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:go_cart/util/constants/image_strings.dart';
 import 'package:go_cart/util/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -34,7 +33,8 @@ class HomeScreen extends StatelessWidget {
                     height: TSizes.spaceBtwSetions,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: TSizes.defaultSpace,right: TSizes.defaultSpace),
+                    padding: EdgeInsets.only(
+                        left: TSizes.defaultSpace, right: TSizes.defaultSpace),
                     child: Column(
                       children: [
                         TSectionHeading(
@@ -59,13 +59,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(TSizes.defaultSpace),
               child: Column(
                 children: [
-                  TPromoSlider(
-                    banners: [
-                      TImages.banner1,
-                      TImages.banner2,
-                      TImages.banner3
-                    ],
-                  ),
+                  TPromoSlider(),
                   SizedBox(
                     height: TSizes.spaceBtwSetions,
                   ),
